@@ -12,3 +12,5 @@
 - 2026-09-14：从 mgbench 迁移 Gemini 原生 SDK 调用到 `providers/gemini_client.py`，配置统一为 `.env` 的 `GEMINI_*` 命名；删除 Beats 服务概念，新增 `scripts/smoke_gemini38.py`。
 - 2026-09-14：真实 `gemini-3.8-flash` smoke 请求到达 `webeye-vertex/gemini-3.8-flash`，但返回 `403 PERMISSION_DENIED`（terms/policies）；用 mgbench 同参数复现，当前记为外部策略/权限待确认，未宣称调用成功。
 - 2026-09-14：使用 mgbench 已验证过的探针图、Gemini native、`max_output_tokens=2000` 且不启用 thinking 再试一次，仍返回同一 `403 PERMISSION_DENIED`；当前环境没有形成成功调用证据。
+- 2026-09-14：推进 Phase 1 基础实现：新增受控 `ffprobe` + SHA-256 ingest、`MediaProbe`/视频 manifest 转换、librosa beat adapter 与固定 BPM fixture 网格；12 个离线测试、真实 WAV ffprobe 冒烟、Ruff 和 compileall 通过。librosa 尚未安装，真实音频 beat 数值仍待验证。
+- 2026-09-14：推进 Phase 2 基础实现：新增 `CandidateClip` 契约和帧对齐的固定窗口抽取器；覆盖尾窗、参数边界和稳定顺序测试。当前总测试 17 个通过；PySceneDetect 与真实视频 fixture 尚未接入。

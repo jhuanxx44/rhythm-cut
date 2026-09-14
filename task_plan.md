@@ -11,8 +11,8 @@
 - [x] 定义 `ClipObservation`、`BeatPoint`、`Shot`、`EditPlan` 数据契约
 - [x] 建立 provider 边界和 Gemini 占位适配器
 - [x] 建立离线模型校验测试与质量门文档
-- [ ] 加入音频 beat analyzer（librosa）和 ffprobe ingest
-- [ ] 加入候选镜头抽取（PySceneDetect/固定窗口）
+- [~] 加入音频 beat analyzer（librosa）和 ffprobe ingest（基础实现完成，真实音频验证待补）
+- [~] 加入候选镜头抽取（固定窗口已完成，PySceneDetect 待补）
 - [ ] 接入 Gemini 录制响应 fixture，再实现 live provider
 - [ ] 实现贪心+回溯选择器和 relaxations 报告
 - [ ] 实现 FFmpeg preview/render 与端到端样例
@@ -32,7 +32,7 @@
 
 验收：非法计划在 CLI `validate` 阶段失败；合法计划 round-trip 后字节级稳定。
 
-### Phase 1：离线媒体输入和节拍网格
+### Phase 1：离线媒体输入和节拍网格（基础实现完成）
 
 目标：不调用模型，从音频和视频得到可复现的输入 manifest、帧率和 beat grid。
 
@@ -41,6 +41,8 @@
 验收：同一文件和配置重复运行得到相同 manifest 与 beat 点；缺少 ffprobe 或损坏媒体有结构化错误。
 
 ### Phase 2：候选镜头抽取
+
+状态：固定窗口基础实现完成；PySceneDetect 增强和真实视频 fixture 待补。
 
 目标：先用固定窗口建立确定性候选集，再接 PySceneDetect 作为可选增强。
 
