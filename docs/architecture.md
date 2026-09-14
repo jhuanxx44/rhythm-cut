@@ -12,7 +12,7 @@
 
 ## Provider policy
 
-Gemini 是早期默认 VLM。Provider 接口只接受一个视频窗口或帧包，返回 `ClipObservation`；调用记录必须包含 provider、model、prompt_version、输入 hash、时间窗口、采样 FPS、原始响应和错误。
+Gemini 是早期默认 VLM。客户端从 `.env` 读取凭证、原生 API base URL 和 Vertex 路径所需的项目/区域；Provider 接口只接受一个视频窗口或帧包，返回 `ClipObservation`；调用记录必须包含 provider、model、prompt_version、输入 hash、时间窗口、采样 FPS、原始响应和错误。
 
 TwelveLabs 不在核心依赖、默认配置或测试路径中。若未来接入，只能实现同一 provider 接口，并通过离线 fixture 验证，不得改变 domain schema。
 

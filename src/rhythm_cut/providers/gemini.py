@@ -1,4 +1,4 @@
-"""Gemini adapter placeholder; live calls are intentionally not part of the skeleton."""
+"""Gemini provider boundary and normalized vision adapter."""
 
 from __future__ import annotations
 
@@ -6,6 +6,9 @@ from collections.abc import Sequence
 
 from rhythm_cut.domain.models import ClipObservation
 from rhythm_cut.providers.base import VideoWindow
+from rhythm_cut.providers.gemini_client import GeminiClient, GeminiError, GeminiResponse
+
+__all__ = ["GeminiClient", "GeminiError", "GeminiResponse", "GeminiVisionProvider"]
 
 
 class GeminiVisionProvider:

@@ -16,6 +16,8 @@ rhythm-cut --help
 
 当前仓库是工程骨架，默认不调用外部模型、不包含真实媒体。先用 `tests/fixtures` 和 `local/` 建立离线契约，再接入 Gemini。
 
+实时 Gemini 调用使用 `.[providers]` 可选依赖和项目根目录的 `.env`：`GEMINI_API_KEY`、`GEMINI_BASE_URL`、`GOOGLE_CLOUD_PROJECT` 与 `GOOGLE_CLOUD_LOCATION`。可用 `scripts/smoke_gemini38.py` 做一次脱敏连通性检查；`.env` 永不提交。
+
 ## 设计边界
 
 - 不依赖 `me-wiki` 或其他知识库运行时。

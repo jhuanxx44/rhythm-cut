@@ -16,7 +16,7 @@ dependencies = [
 [project.optional-dependencies]
 analysis = ["librosa>=0.10,<1", "opencv-python>=4.9,<5", "scenedetect[opencv]>=0.7,<1"]
 render = ["ffmpeg-python>=0.2,<1"]
-providers = ["google-genai>=1,<2"]
+providers = ["google-genai>=2.22,<3"]
 dev = ["pytest>=8,<9", "ruff>=0.6,<1", "jsonschema>=4,<5"]
 
 [project.scripts]
