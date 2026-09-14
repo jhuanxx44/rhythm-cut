@@ -1,0 +1,17 @@
+{
+  "plan_id": "fixture-invalid-001",
+  "fps": 30,
+  "duration_s": 1.0,
+  "audio_asset_id": "music-001",
+  "shots": [
+    {
+      "shot_id": "shot-001",
+      "timeline_start_s": 0.0,
+      "timeline_end_s": 1.1,
+      "source_asset_id": "asset-001",
+      "source_in_frame": 0,
+      "source_out_frame": 30,
+      "beat_id": 0
+    }
+  ]
+}

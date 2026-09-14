@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 
 class EvidenceRef(BaseModel):
@@ -23,6 +23,23 @@ class EvidenceRef(BaseModel):
         if start is not None and value <= start:
             raise ValueError("end_s must be greater than start_s")
         return value
+
+
+class AssetManifest(BaseModel):
+    """Stable metadata for one local media asset."""
+
+    asset_id: str
+    sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    duration_s: float = Field(gt=0)
+    fps: float = Field(gt=0)
+    frame_count: int = Field(gt=0)
+
+    @model_validator(mode="after")
+    def frame_count_covers_duration(self) -> AssetManifest:
+        expected_frames = self.duration_s * self.fps
+        if self.frame_count < expected_frames:
+            raise ValueError("frame_count must cover the asset duration at the declared fps")
+        return self
 
 
 class ClipObservation(BaseModel):
@@ -111,3 +128,20 @@ class EditPlan(BaseModel):
     relaxations: list[Relaxation] = Field(default_factory=list)
     model: str | None = None
     prompt_version: str | None = None
+
+    @model_validator(mode="after")
+    def validate_global_shot_constraints(self) -> EditPlan:
+        """Enforce timeline invariants that cannot be checked per shot."""
+
+        seen_beats: set[int] = set()
+        previous_end = 0.0
+        for index, shot in enumerate(self.shots):
+            if shot.timeline_end_s > self.duration_s:
+                raise ValueError(f"shots[{index}] must end within duration_s")
+            if shot.timeline_start_s < previous_end:
+                raise ValueError("shots must be sorted and must not overlap")
+            if shot.beat_id in seen_beats:
+                raise ValueError(f"beat_id {shot.beat_id} may appear at most once")
+            seen_beats.add(shot.beat_id)
+            previous_end = shot.timeline_end_s
+        return self

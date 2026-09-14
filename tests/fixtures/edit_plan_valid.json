@@ -1,0 +1,34 @@
+{
+  "schema_version": "edit-plan-v1",
+  "plan_id": "fixture-valid-001",
+  "fps": 30,
+  "duration_s": 2.0,
+  "audio_asset_id": "music-001",
+  "shots": [
+    {
+      "shot_id": "shot-001",
+      "timeline_start_s": 0.0,
+      "timeline_end_s": 1.0,
+      "source_asset_id": "asset-001",
+      "source_in_frame": 0,
+      "source_out_frame": 30,
+      "beat_id": 0,
+      "color_id": "red",
+      "action_id": "A",
+      "evidence_refs": []
+    },
+    {
+      "shot_id": "shot-002",
+      "timeline_start_s": 1.0,
+      "timeline_end_s": 2.0,
+      "source_asset_id": "asset-001",
+      "source_in_frame": 30,
+      "source_out_frame": 60,
+      "beat_id": 1,
+      "color_id": "blue",
+      "action_id": "B",
+      "evidence_refs": []
+    }
+  ],
+  "relaxations": []
+}
