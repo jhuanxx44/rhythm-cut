@@ -1,0 +1,21 @@
+project:
+  fps: 30
+  aspect_ratio: "9:16"
+  min_duration_s: 10
+  max_duration_s: 20
+analysis:
+  proxy_fps: 6
+  min_clip_duration_s: 0.18
+  max_clip_duration_s: 1.80
+  vlm_provider: gemini
+  vlm_model: gemini-2.5-flash
+selection:
+  color_adjacent_repeat_penalty: 2.0
+  color_quota_penalty: 1.5
+  action_transition_penalty: 1.0
+  beat_alignment_weight: 3.0
+  visual_quality_weight: 2.0
+  diversity_weight: 1.0
+render:
+  video_codec: libx264
+  audio_codec: aac

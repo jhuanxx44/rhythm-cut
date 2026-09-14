@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rhythm-cut"
+version = "0.1.0"
+description = "Constraint-aware beat editing for fashion commerce videos"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.7,<3",
+  "typer>=0.12,<1",
+  "pyyaml>=6,<7",
+]
+
+[project.optional-dependencies]
+analysis = ["librosa>=0.10,<1", "opencv-python>=4.9,<5", "scenedetect[opencv]>=0.7,<1"]
+render = ["ffmpeg-python>=0.2,<1"]
+providers = ["google-genai>=1,<2"]
+dev = ["pytest>=8,<9", "ruff>=0.6,<1", "jsonschema>=4,<5"]
+
+[project.scripts]
+rhythm-cut = "rhythm_cut.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
