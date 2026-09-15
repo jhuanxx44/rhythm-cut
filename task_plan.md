@@ -14,7 +14,7 @@
 - [~] 加入音频 beat analyzer（librosa）和 ffprobe ingest（基础实现完成，真实音频验证待补）
 - [~] 加入候选镜头抽取（固定窗口已完成，PySceneDetect 待补）
 - [ ] 接入 Gemini 录制响应 fixture，再实现 live provider
-- [ ] 实现贪心+回溯选择器和 relaxations 报告
+- [x] 实现贪心+回溯选择器和 relaxations 报告
 - [ ] 实现 FFmpeg preview/render 与端到端样例
 - [ ] 建立人工标注集、回归评测和成本/延迟记录
 
@@ -58,13 +58,15 @@
 
 验收：离线 fixture 能完整生成 `ClipObservation`；live 调用只增加联网验收，不改变 domain schema。
 
-### Phase 4：选择器和降级报告
+### Phase 4：选择器和降级报告（已完成）
 
 目标：在 beat slots 上完成可解释的贪心 + 有界回溯选择。
 
 产物：颜色配额、动作覆盖、质量、多样性和动作转场评分；`relaxations[]` 记录每次放宽及原因。
 
 验收：合成候选矩阵覆盖“可满足、候选不足、完全不可满足”三类；结果稳定且每个 slot 至多一个镜头。
+
+实现：固定排序的候选评分、有限搜索节点的回溯、候选不复用、颜色配额和动作覆盖目标；不可满足目标进入 `EditPlan.relaxations`。
 
 ### Phase 5：FFmpeg 预览和成片
 

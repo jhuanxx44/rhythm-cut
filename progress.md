@@ -14,3 +14,4 @@
 - 2026-09-14：使用 mgbench 已验证过的探针图、Gemini native、`max_output_tokens=2000` 且不启用 thinking 再试一次，仍返回同一 `403 PERMISSION_DENIED`；当前环境没有形成成功调用证据。
 - 2026-09-14：推进 Phase 1 基础实现：新增受控 `ffprobe` + SHA-256 ingest、`MediaProbe`/视频 manifest 转换、librosa beat adapter 与固定 BPM fixture 网格；12 个离线测试、真实 WAV ffprobe 冒烟、Ruff 和 compileall 通过。librosa 尚未安装，真实音频 beat 数值仍待验证。
 - 2026-09-14：推进 Phase 2 基础实现：新增 `CandidateClip` 契约和帧对齐的固定窗口抽取器；覆盖尾窗、参数边界和稳定顺序测试。当前总测试 17 个通过；PySceneDetect 与真实视频 fixture 尚未接入。
+- 2026-09-15：完成 Phase 4：新增 `ObservedCandidate` 与确定性贪心/有限回溯选择器，支持颜色配额、动作覆盖、候选不复用和 beat slot 跳过；不可满足约束写入 `relaxations[]`。合成可满足/候选不足测试通过，总测试 19 个。
