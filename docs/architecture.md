@@ -31,3 +31,6 @@ Phase 1 的本地输入层使用固定参数调用 `ffprobe` 并计算 SHA-256�
 
 候选抽取先使用帧对齐的固定窗口实现；每个候选保留源帧的包含起点和排他终点。窗口生成不依赖
 模型或随机数，PySceneDetect 只能作为后续增强路径。
+
+渲染器只接受已校验的 `EditPlan`、资产路径映射和音频路径，由代码生成 FFmpeg 参数列表；每个 shot
+使用源帧范围 trim 后 concat，最后映射音频并写出 JSON render manifest。Edit Plan 本身不携带命令。

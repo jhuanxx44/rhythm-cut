@@ -15,7 +15,7 @@
 - [~] 加入候选镜头抽取（固定窗口已完成，PySceneDetect 待补）
 - [ ] 接入 Gemini 录制响应 fixture，再实现 live provider
 - [x] 实现贪心+回溯选择器和 relaxations 报告
-- [ ] 实现 FFmpeg preview/render 与端到端样例
+- [~] 实现 FFmpeg preview/render 与端到端样例（受控 render 基础完成，CLI/preview 待补）
 - [ ] 建立人工标注集、回归评测和成本/延迟记录
 
 ## 推进路径（按依赖顺序）
@@ -68,13 +68,15 @@
 
 实现：固定排序的候选评分、有限搜索节点的回溯、候选不复用、颜色配额和动作覆盖目标；不可满足目标进入 `EditPlan.relaxations`。
 
-### Phase 5：FFmpeg 预览和成片
+### Phase 5：FFmpeg 预览和成片（基础实现完成）
 
 目标：把已校验的 `EditPlan` 转成预览和 MP4，并留下可审计 manifest。
 
 产物：受控的 FFmpeg 参数生成器、preview/render 命令、render manifest 和结构化日志。
 
 验收：合成媒体渲染成功；输出帧率、时长、音频存在性和音画漂移通过自动检查。真实素材质量另行标记。
+
+实现：`rendering/ffmpeg.py` 生成固定结构的参数列表和帧级 trim/concat filter，并写出 render manifest；命令行 preview/render 入口和真实素材质量检查待补。
 
 ### Phase 6：评测、成本和发布门
 

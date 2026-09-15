@@ -18,6 +18,8 @@ rhythm-cut --help
 
 本地分析基础已包含受控 `ffprobe` ingest、SHA-256 manifest、固定 BPM beat grid 和帧对齐固定窗口候选抽取；librosa、PySceneDetect 和真实媒体验证仍是可选后续阶段。
 
+渲染基础使用已校验的 `EditPlan` 生成受控 FFmpeg 参数和 JSON render manifest；当前已通过合成媒体验证，命令行 preview/render 入口仍在后续阶段。
+
 实时 Gemini 调用使用 `.[providers]` 可选依赖和项目根目录的 `.env`：`GEMINI_API_KEY`、`GEMINI_BASE_URL`、`GOOGLE_CLOUD_PROJECT` 与 `GOOGLE_CLOUD_LOCATION`。可用 `scripts/smoke_gemini38.py` 做一次脱敏连通性检查；`.env` 永不提交。
 
 ## 设计边界
